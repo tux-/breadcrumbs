@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<title>Breadcrumbs</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script>
+			let breadcrumbs = {
+				nav: [
+					{
+						link: '#',
+						label: 'Blog',
+					},
+					[
+						{
+							link: '#back-end',
+							label: 'Back-end',
+						},
+						{
+							link: '#font-end',
+							label: 'Front-end',
+							state: 'active',
+						},
+					],
+					[
+						{
+							link: '#color',
+							label: 'Color',
+						},
+						{
+							link: '#markup',
+							label: 'Markup',
+						},
+						{
+							link: '#accessibility',
+							label: 'Accessibility',
+							state: 'active',
+						},
+						{
+							link: '#javascript',
+							label: 'Javascript',
+						},
+					],
+					[
+						{
+							link: '#page-a',
+							label: 'How to setup roving UX',
+						},
+						{
+							link: '#page-b',
+							label: 'The trick to good visibly hidden elements',
+						},
+						{
+							link: '#page-c',
+							label: 'Why you still need role="navigation" on a nav element',
+							state: 'active',
+						},
+					],
+				],
+			};
+		</script>
+		<script src="./js/bread-crumbs.js"></script>
+		<style>
+			html, body {
+				margin: 10px;
+			}
+			body {
+				font-family: Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
+				font-size: 14px;
+			}
+			bread-crumbs {
+				--icon-gap: 1px;
+				--item-gap: 10px;
+			}
+			bread-crumbs::part(a) {
+				color: #2550cd;
+			}
+		</style>
+	</head>
+	<body>
+		<bread-crumbs use="breadcrumbs"></bread-crumbs>
+		<h1>Breadcrumbs webcomponent</h1>
+		<p>
+			This is a slightly different take on the awesome <a href="https://web.dev/building-a-breadcrumbs-component/">breadcrumbs</a> by <a href="https://web.dev/authors/adamargyle/">Adam Argyle</a>.
+			This project is closely modeled on the original work, since I really liked that take on breadcrumbs.
+			Modififications include, but are not limited to:
+		</p>
+		<ul>
+			<li>Turned into a webcomponent.</li>
+			<li>Changed layout to be based on a list.</li>
+			<li>Keeping the list right scrolled with javascript, and also do this on initial load.</li>
+			<li>Hiding children on navigation is not included.</li>
+			<li>svg graphics changed to use <a href="https://fonts.google.com/icons">material design icons</a>.</li>
+			<li>I was unable to find any browser that did select autochange as mentioned in the original work, so support for that is not included.</li>
+		</ul>
+		<p>This demo is only meant to show basic of how it works, not actually be interactive on navigation. For that any page loader could be used to update the breadcrumbs content.</p>
+	</body>
+</html>
