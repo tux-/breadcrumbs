@@ -84,7 +84,7 @@
 		<p>
 			This is a slightly different take on the awesome <a href="https://web.dev/building-a-breadcrumbs-component/">breadcrumbs</a> by <a href="https://web.dev/authors/adamargyle/">Adam Argyle</a>.
 			This project is closely modeled on the original work, since I really liked that take on breadcrumbs.
-			Modififications include, but are not limited to:
+			Modifications include, but are not limited to:
 		</p>
 		<ul>
 			<li>Turned into a webcomponent.</li>
@@ -92,8 +92,31 @@
 			<li>Keeping the list right scrolled with javascript, and also do this on initial load.</li>
 			<li>Hiding children on navigation is not included.</li>
 			<li>svg graphics changed to use <a href="https://fonts.google.com/icons">material design icons</a>.</li>
-			<li>I was unable to find any browser that did select autochange as mentioned in the original work, so support for that is not included.</li>
 		</ul>
 		<p>This demo is only meant to show basic of how it works, not actually be interactive on navigation. For that any page loader could be used to update the breadcrumbs content.</p>
+
+		<style>
+			code {
+				background-color: #e3e3e3;
+				padding: 1px 3px;
+			}
+		</style>
+		<h2>API</h2>
+		<p>The component has a very basic API, and more functionality can be added easially.</p>
+		<h3>JavaScript</h3>
+		<p>To update content after initial render, one can send the component a new object to update contents from by calling <code>document.querySelector('bread-crumbs').use(dataObject);</code></p>
+		<h3>CSS</h3>
+		<p><code>bread-crumbs {}</code> The main component styles, like colour, font size, etc.</p>
+		<div style="margin-left: 20px;">
+			<p><code>--icon-gap: 1px;</code> Set the gap between the icon and text of an item.</p>
+			<p><code>--item-gap: 10px;</code> Set the gap between items.</p>
+			<p><code>--divider: '/';</code> Set the character used as divider between items.</p>
+			<p><code>--divider-color: #aaa;</code> Set the colour used on the divider between items.</p>
+		</div>
+
+		<p><code>bread-crumbs::part(a) {}</code> You can give the anchor elements any style you want, like colour, etc.</p>
+
+		<h2>About</h2>
+		<p>Source code, issue list, etc, on <a href="https://github.com/tux-/breadcrumbs">GitHub</a>.</p>
 	</body>
 </html>

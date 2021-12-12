@@ -182,7 +182,7 @@ window.customElements.define('bread-crumbs', class extends HTMLElement {
 		return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
 	}
 
-	generate (data) {
+	use (data) {
 		let build = '<ul>';
 
 		data.nav.forEach((node, index) => {
@@ -229,11 +229,31 @@ window.customElements.define('bread-crumbs', class extends HTMLElement {
 
 		this.shadowRoot.querySelector('nav').innerHTML = build;
 		this.shadowRoot.querySelector('nav > ul').scrollLeft = 10000000;
+
+		this.shadowRoot.querySelectorAll('select').forEach(select => {
+			select.addEventListener('change', e => {
+				if (this.ignoreChange === true) {
+					e.preventDefault();
+					e.stopPropagation();
+					return false;
+				}
+			});
+			select.addEventListener('keydown', e => {
+				if (['ArrowUp', 'ArrowDown'].includes(e.key)) {
+					this.ignoreChange = true;
+				}
+				else {
+					this.ignoreChange = false;
+				}
+			});
+		});
 	}
 
 	connectedCallback () {
+		this.ignoreChange = false;
+
 		let data = new Function(`"use strict"; return ${this.getAttribute('use')};`)();
-		this.generate(data);
+		this.use(data);
 
 		(new ResizeObserver(entries => {
 			this.shadowRoot.querySelector('nav > ul').scrollLeft = 10000000;
